@@ -23,7 +23,8 @@
 		"url": "https://github.com/shubhamsinha/better-shop.git"
 	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"lint-staged": {
 		"**/*.{ts,tsx}": [
