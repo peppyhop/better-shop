@@ -1,0 +1,64 @@
+# Better Shop LLM Guide
+
+This project, `better-shop`, is a TypeScript library that provides a type-safe RPC API for Shopify stores. It leverages `better-call` for the API framework and `shop-client` for interacting with Shopify's storefront.
+
+## Purpose
+
+The library simplifies building backend services or proxies for Shopify stores, offering structured endpoints for products, collections, store info, and checkout, along with LLM-powered features like product enrichment and classification.
+
+## Core Components
+
+1.  **`betterShop(options)`**:
+    *   **Description**: The main entry point. Creates a `better-call` router instance.
+    *   **Parameters**:
+        *   `options` (ShopClientOptions): Configuration options like `cacheTTL`.
+    *   **Returns**: A `better-call` router.
+    *   **Requirements**: Requests to this router MUST include an `x-shop-domain` header specifying the target Shopify domain.
+
+2.  **Endpoints**:
+    *   **Store Info**: `/info`, `/info/clear-cache`, `/store-type`.
+    *   **Products**: `/products/all`, `/products/paginated`, `/products/showcased`, `/products/:handle`, etc.
+    *   **Collections**: `/collections/all`, `/collections/paginated`, `/collections/:handle`, etc.
+    *   **Checkout**: `/checkout/url` (POST).
+
+## Usage Pattern
+
+When generating code using `better-shop`, follow this pattern:
+
+1.  **Initialize**:
+    ```typescript
+    import { betterShop } from "better-shop";
+    const router = betterShop();
+    ```
+
+2.  **Serve**:
+    Mount the router handler to a server (Bun, Node, etc.).
+    ```typescript
+    Bun.serve({ fetch: router.handler });
+    ```
+
+3.  **Consume (Client)**:
+    Use `better-call/client` to create a type-safe client. **Crucial**: Pass `x-shop-domain` in headers.
+    ```typescript
+    import { createClient } from "better-call/client";
+    type ShopRouter = ReturnType<typeof betterShop>;
+    const client = createClient<ShopRouter>({
+        baseURL: "...",
+        headers: { "x-shop-domain": "shop.myshopify.com" }
+    });
+    const result = await client("/products/paginated", { query: { limit: 5 } });
+    ```
+
+## Dependencies
+
+*   `better-call`: RPC framework.
+*   `shop-client`: Shopify scraping/API client.
+*   `arktype`: Schema validation.
+*   `bun`: Runtime (preferred) and test runner.
+
+## LLM Features
+
+The library exposes `shop-client`'s LLM capabilities:
+*   **Enrichment**: `/products/:handle/enriched` accepts `apiKey` and `model` in the body to generate markdown/HTML content.
+*   **Classification**: `/products/:handle/classify` categorizes products into verticals/audiences.
+*   **SEO**: `/products/:handle/seo` generates meta tags and descriptions.

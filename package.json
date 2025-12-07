@@ -1,0 +1,73 @@
+{
+	"name": "better-shop",
+	"version": "0.0.1",
+	"description": "A pluggable, type-safe shop service built with better-call and shop-client",
+	"main": "dist/shop-service.js",
+	"module": "dist/shop-service.mjs",
+	"types": "dist/shop-service.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/shop-service.d.ts",
+			"import": "./dist/shop-service.js",
+			"require": "./dist/shop-service.cjs"
+		}
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"llms.txt"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/shubhamsinha/better-shop.git"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"lint-staged": {
+		"**/*.{ts,tsx}": [
+			"biome check --write --no-errors-on-unmatched",
+			"biome lint --diagnostic-level=error --no-errors-on-unmatched"
+		]
+	},
+	"scripts": {
+		"start": "bun run index.ts",
+		"dev": "bun run --watch index.ts",
+		"format": "biome format --write --no-errors-on-unmatched",
+		"lint": "biome lint --diagnostic-level=error --no-errors-on-unmatched . && tsc --noEmit -p tsconfig.json",
+		"build": "tsup src/shop-service.ts --format cjs,esm --dts --out-dir dist",
+		"test": "bun test",
+		"release": "semantic-release",
+		"prepare": "husky"
+	},
+	"keywords": [
+		"shopify",
+		"better-call",
+		"shop-client",
+		"rpc",
+		"typescript",
+		"api"
+	],
+	"author": "Shubham Sinha",
+	"license": "MIT",
+	"devDependencies": {
+		"@biomejs/biome": "2.3.8",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/git": "^10.0.1",
+		"@types/bun": "^1.3.3",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
+		"semantic-release": "^25.0.2",
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"arktype": "^2.1.28",
+		"better-call": "^1.1.5",
+		"shop-client": "^3.9.0"
+	}
+}
