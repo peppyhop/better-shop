@@ -11,6 +11,31 @@
 			"types": "./dist/shop-service.d.ts",
 			"import": "./dist/shop-service.js",
 			"require": "./dist/shop-service.cjs"
+		},
+		"./shop/getShop": {
+			"types": "./dist/shop/getShop.d.ts",
+			"import": "./dist/shop/getShop.js",
+			"require": "./dist/shop/getShop.cjs"
+		},
+		"./shop/store": {
+			"types": "./dist/shop/store.d.ts",
+			"import": "./dist/shop/store.js",
+			"require": "./dist/shop/store.cjs"
+		},
+		"./shop/products": {
+			"types": "./dist/shop/products.d.ts",
+			"import": "./dist/shop/products.js",
+			"require": "./dist/shop/products.cjs"
+		},
+		"./shop/collections": {
+			"types": "./dist/shop/collections.d.ts",
+			"import": "./dist/shop/collections.js",
+			"require": "./dist/shop/collections.cjs"
+		},
+		"./shop/checkout": {
+			"types": "./dist/shop/checkout.d.ts",
+			"import": "./dist/shop/checkout.js",
+			"require": "./dist/shop/checkout.cjs"
 		}
 	},
 	"files": [
@@ -37,7 +62,7 @@
 		"dev": "bun run --watch index.ts",
 		"format": "biome format --write --no-errors-on-unmatched",
 		"lint": "biome lint --diagnostic-level=error --no-errors-on-unmatched . && tsc --noEmit -p tsconfig.json",
-		"build": "tsup src/shop-service.ts --format cjs,esm --dts --out-dir dist",
+		"build": "tsup src/shop-service.ts src/shop/getShop.ts src/shop/store.ts src/shop/products.ts src/shop/collections.ts src/shop/checkout.ts --format cjs,esm --dts --out-dir dist",
 		"test": "bun test",
 		"release": "semantic-release",
 		"prepare": "husky"
