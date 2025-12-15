@@ -5,14 +5,15 @@ import { buildCollectionEndpoints } from "./shop/collections";
 import { makeGetShop } from "./shop/getShop";
 import { buildProductEndpoints } from "./shop/products";
 import { buildStoreEndpoints } from "./shop/store";
+import { buildUtilsEndpoints } from "./shop/utils";
 
-export type { ShopClientOptions } from "shop-client";
 export { configureRateLimit } from "shop-client";
 export { buildCheckoutEndpoints } from "./shop/checkout";
 export { buildCollectionEndpoints } from "./shop/collections";
 export { makeGetShop } from "./shop/getShop";
 export { buildProductEndpoints } from "./shop/products";
 export { buildStoreEndpoints } from "./shop/store";
+export { buildUtilsEndpoints } from "./shop/utils";
 
 export const betterShop = (options?: ShopClientOptions) => {
 	const getShop = makeGetShop(options);
@@ -38,12 +39,17 @@ export const betterShop = (options?: ShopClientOptions) => {
 		getCollectionProductSlugs,
 	} = buildCollectionEndpoints(getShop);
 	const { createCheckoutUrl } = buildCheckoutEndpoints(getShop);
+	const { detectCountry, getStoreSlug, getProductSlug } =
+		buildUtilsEndpoints(getShop);
 
 	return createRouter(
 		{
 			getInfo,
 			clearInfoCache,
 			determineStoreType,
+			detectCountry,
+			getStoreSlug,
+			getProductSlug,
 			getAllProducts,
 			getPaginatedProducts,
 			getShowcasedProducts,
