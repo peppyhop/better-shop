@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/peppyhop/better-shop/compare/v1.1.0...v1.2.0) (2025-12-15)
+
+
+### Features
+
+* **utils:** add utils endpoints for country detection and slug generation ([#5](https://github.com/peppyhop/better-shop/issues/5)) ([433b063](https://github.com/peppyhop/better-shop/commit/433b063dacf7193b0a19f4f5e48e0ba68ee555fa))
+
 # [1.1.0](https://github.com/peppyhop/better-shop/compare/v1.0.0...v1.1.0) (2025-12-08)
 
 
