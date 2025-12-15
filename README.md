@@ -13,9 +13,9 @@ A pluggable, type-safe shop service built with [better-call](https://github.com/
 ## Installation
 
 ```bash
-npm install better-shop better-call shop-client arktype
+npm install better-shop
 # or
-bun add better-shop better-call shop-client arktype
+bun add better-shop
 ```
 
 ## Usage

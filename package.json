@@ -36,6 +36,11 @@
 			"types": "./dist/shop/checkout.d.ts",
 			"import": "./dist/shop/checkout.js",
 			"require": "./dist/shop/checkout.cjs"
+		},
+		"./shop/utils": {
+			"types": "./dist/shop/utils.d.ts",
+			"import": "./dist/shop/utils.js",
+			"require": "./dist/shop/utils.cjs"
 		}
 	},
 	"files": [
@@ -62,7 +67,7 @@
 		"dev": "bun run --watch index.ts",
 		"format": "biome format --write --no-errors-on-unmatched",
 		"lint": "biome lint --diagnostic-level=error --no-errors-on-unmatched . && tsc --noEmit -p tsconfig.json",
-		"build": "tsup src/shop-service.ts src/shop/getShop.ts src/shop/store.ts src/shop/products.ts src/shop/collections.ts src/shop/checkout.ts --format cjs,esm --dts --out-dir dist",
+		"build": "tsup src/shop-service.ts src/shop/getShop.ts src/shop/store.ts src/shop/products.ts src/shop/collections.ts src/shop/checkout.ts src/shop/utils.ts --format cjs,esm --dts --out-dir dist",
 		"test": "bun test",
 		"release": "semantic-release",
 		"prepare": "husky"
@@ -81,7 +86,7 @@
 		"@biomejs/biome": "2.3.8",
 		"@semantic-release/changelog": "^6.0.3",
 		"@semantic-release/git": "^10.0.1",
-		"@types/bun": "^1.3.3",
+		"@types/bun": "^1.3.4",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.2.7",
 		"semantic-release": "^25.0.2",
@@ -94,6 +99,6 @@
 	"dependencies": {
 		"arktype": "^2.1.28",
 		"better-call": "^1.1.5",
-		"shop-client": "^3.9.0"
+		"shop-client": "^3.10.0"
 	}
 }

@@ -1,12 +1,10 @@
 import { describe, expect, it, mock } from "bun:test";
-import type { ShopClientOptions } from "shop-client";
-import { betterShop } from "../src/shop-service";
 
 // Mock shop-client
 mock.module("shop-client", () => {
 	return {
 		ShopClient: class MockShopClient {
-			constructor(domain: string, options: ShopClientOptions) {}
+			constructor(domain: string, options: any) {}
 			getInfo() {
 				return Promise.resolve({
 					name: "Mock Store",
@@ -63,6 +61,8 @@ mock.module("shop-client", () => {
 		},
 	};
 });
+
+import { betterShop } from "../src/shop-service";
 
 describe("Shop Router", () => {
 	const router = betterShop();

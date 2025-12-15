@@ -45,7 +45,7 @@ async function main() {
 		console.error("Error fetching collections:", collections.error);
 	} else {
 		console.log(`Found ${collections.data?.length} collections`);
-		collections.data?.forEach((c) => {
+		collections.data?.forEach((c: any) => {
 			console.log(
 				`- ${c.title} (Handle: ${c.handle}, Products: ${c.productsCount})`,
 			);
@@ -74,7 +74,7 @@ async function main() {
 		} else {
 			if (colProducts.data) {
 				console.log(`Found ${colProducts.data.length} products in collection`);
-				colProducts.data.forEach((p) => {
+				colProducts.data.forEach((p: any) => {
 					console.log(`- ${p.title} (${p.price})`);
 				});
 			} else {
